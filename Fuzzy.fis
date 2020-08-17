@@ -1,0 +1,95 @@
+[System]
+Name='Fuzzy'
+Type='sugeno'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=42
+AndMethod='prod'
+OrMethod='max'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='Angle'
+Range=[-180 180]
+NumMFs=5
+MF1='negative':'trimf',[-150 -90 -25]
+MF2='zero':'trimf',[-25 0 25]
+MF3='positive':'trimf',[25 90 150]
+MF4='alpha':'trimf',[-180 -150 -150]
+MF5='beta':'trimf',[150 150 180]
+
+[Input2]
+Name='obstacle.pos'
+Range=[-9 5]
+NumMFs=6
+MF1='-9':'trimf',[-9 -9 -9]
+MF2='-5':'trimf',[-5 -5 -5]
+MF3='-2.5':'trimf',[-2.5 -2.5 -2.5]
+MF4='0':'trimf',[0 0 0]
+MF5='2.5':'trimf',[2.5 2.5 2.5]
+MF6='5':'trimf',[5 5 5]
+
+[Input3]
+Name='Sensor'
+Range=[0 100]
+NumMFs=3
+MF1='None':'trimf',[0 0 0]
+MF2='Faraway_obstacle':'trimf',[0 5 20]
+MF3='Nearby_obstacle':'trimf',[20 40 100]
+
+[Output1]
+Name='Robot'
+Range=[0 1]
+NumMFs=5
+MF1='left-fast':'constant',[-0.4]
+MF2='leftslow':'constant',[-0.1]
+MF3='straight':'constant',[0]
+MF4='rightslow':'constant',[0.1]
+MF5='rightfast':'constant',[0.4]
+
+[Rules]
+1 1 0, 1 (1) : 1
+2 1 0, 3 (1) : 1
+3 1 0, 5 (1) : 1
+3 5 2, 1 (1) : 1
+3 5 3, 1 (1) : 1
+2 5 2, 3 (1) : 1
+2 5 3, 1 (1) : 1
+1 5 2, 2 (1) : 1
+1 5 3, 1 (1) : 1
+3 3 2, 5 (1) : 1
+3 3 3, 5 (1) : 1
+2 3 2, 3 (1) : 1
+2 3 3, 5 (1) : 1
+1 3 2, 4 (1) : 1
+1 3 3, 5 (1) : 1
+3 6 2, 2 (1) : 1
+3 6 3, 2 (1) : 1
+2 6 2, 3 (1) : 1
+2 6 3, 1 (1) : 1
+1 6 2, 1 (1) : 1
+1 6 3, 1 (1) : 1
+3 2 2, 4 (1) : 1
+3 2 3, 4 (1) : 1
+2 2 2, 3 (1) : 1
+2 2 3, 5 (1) : 1
+1 2 2, 5 (1) : 1
+1 2 3, 5 (1) : 1
+3 4 2, 4 (1) : 1
+3 4 3, 5 (1) : 1
+2 4 2, 3 (1) : 1
+1 4 2, 2 (1) : 1
+1 4 3, 1 (1) : 1
+2 4 3, 1 (1) : 1
+4 1 1, 1 (1) : 1
+5 1 1, 5 (1) : 1
+-3 -3 -2, -5 (1) : 1
+-3 -4 -2, -4 (1) : 1
+-2 -6 -3, -1 (1) : 1
+-2 -5 -3, -1 (1) : 1
+-2 -1 0, -3 (1) : 1
+-1 -4 -3, -1 (1) : 1
+-1 -5 -3, -1 (1) : 1
